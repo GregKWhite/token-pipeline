@@ -11,8 +11,8 @@ type Pipeline<T> = {
   join: <T2 extends any[]>(...joinedValue: [...T2]) => Pipeline<[T, ...T2]>;
   out: (
     filepath: string,
-    options: {formatter?: (filepath: string) => PromiseOrValue<void>},
-    callback: (args: T) => PromiseOrValue<string>
+    callback: (args: T) => PromiseOrValue<string>,
+    options?: {formatter?: (filepath: string) => PromiseOrValue<void>}
   ) => Pipeline<T>;
   flow: () => Promise<T>;
 };
@@ -39,7 +39,7 @@ function makePipeline<T>(promises: PipelinePromise[]): Pipeline<T> {
         (prev) => [prev, ...joinedValue],
       ]);
     },
-    out: function (filepath: string, {formatter}, callback) {
+    out: function (filepath: string, callback, {formatter} = {}) {
       return makePipeline<T>([
         ...promises,
         async (prev) => {

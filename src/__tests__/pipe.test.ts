@@ -108,7 +108,7 @@ describe('pipelines', () => {
     test('it writes the value to the file', async () => {
       await source([1, 2, 3])
         .pipe((array) => array.map((x) => x + 1))
-        .out('test.json', {}, (value) => JSON.stringify(value))
+        .out('test.json', (value) => JSON.stringify(value))
         .flow();
 
       expect(await fs.readFile('test.json', 'utf8')).toEqual('[2,3,4]');
@@ -123,7 +123,7 @@ describe('pipelines', () => {
 
       await source([1, 2, 3])
         .pipe((array) => array.map((x) => x + 1))
-        .out('test.json', {formatter}, JSON.stringify)
+        .out('test.json', JSON.stringify, {formatter})
         .flow();
 
       expect(await fs.readFile('test.json', 'utf8')).toEqual('["two",3,4]');
