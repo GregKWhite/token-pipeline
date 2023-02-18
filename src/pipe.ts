@@ -63,6 +63,5 @@ function makePipeline<T>(promises: PipelinePromise[]): Pipeline<T> {
 }
 
 export function source<T>(value: T) {
-  const promises: ((arg: any) => PromiseOrValue<any>)[] = [() => value];
-  return makePipeline<T>(promises);
+  return makePipeline<T>([() => value]);
 }
