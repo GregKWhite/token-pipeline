@@ -1,6 +1,6 @@
 {
   "name": "token-pipeline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This is a Typescript based library for managing your design system tokens. It is unopiniated, and designed to make it easy to manage token definitions, transformations, and outputs.",
   "source": "src/index.ts",
   "main": "dist/main.js",
@@ -18,6 +18,10 @@
   ],
   "author": {
     "name": "Greg White"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GregKWhite/token-pipeline.git"
   },
   "license": "ISC",
   "dependencies": {
