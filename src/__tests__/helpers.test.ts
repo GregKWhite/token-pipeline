@@ -4,8 +4,10 @@ import {mapValues, mapItems} from '../helpers';
 describe('helpers', () => {
   describe('mapValues', () => {
     it('returns a function that maps the values of an object', async () => {
-      const result = await source({a: 1, b: 2, c: 3})
-        .pipe(mapValues((num, key) => ({times2: num * 2, originalKey: key})))
+      const result = await source({a: {value: 1}, b: {value: 2}, c: {value: 3}})
+        .pipe(
+          mapValues((num, key) => ({times2: num.value * 2, originalKey: key}))
+        )
         .flow();
 
       expect(result).toEqual({
