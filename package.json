@@ -1,6 +1,6 @@
 {
   "name": "token-pipeline",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "This is a Typescript based library for managing your design system tokens. It is unopiniated, and designed to make it easy to manage token definitions, transformations, and outputs.",
   "source": "src/index.ts",
   "main": "dist/main.js",
