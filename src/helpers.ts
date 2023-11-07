@@ -8,9 +8,9 @@
  * @returns A function that maps an array of items using the given callback.
  */
 export function mapItems<T, R>(
-  callback: (arg: T, index: number) => R
+  callback: (arg: T, index: number, collection: T[]) => R
 ): (arg: T[]) => R[] {
-  return (data) => data.map((item, index) => callback(item, index));
+  return (data) => data.map(callback);
 }
 
 /**
@@ -23,13 +23,13 @@ export function mapItems<T, R>(
  * @returns A function that maps the values of an object using the given callback.
  */
 export function mapValues<T extends Record<any, any>, R>(
-  callback: (value: T[keyof T], key: keyof T) => R
+  callback: (value: T[keyof T], key: keyof T, collection: T) => R
 ) {
   return (data: T) => {
     return Object.keys(data).reduce((acc, key) => {
       return {
         ...acc,
-        [key]: callback(data[key], key),
+        [key]: callback(data[key], key, data),
       };
     }, {} as {[key in keyof T]: R});
   };
